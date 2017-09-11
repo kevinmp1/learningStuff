@@ -1,6 +1,5 @@
 package passap.test;
 
-import java.awt.EventQueue;
 import javax.swing.JFrame;
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
@@ -13,6 +12,7 @@ import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
 
 public class AppLogin {
@@ -25,28 +25,15 @@ public class AppLogin {
 	private String userName = null;
 	private String password = null;
 
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AppLogin window = new AppLogin();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	/**
 	 * Create the application.
 	 */
 	public AppLogin() {
 		initialize();
+	}
+	
+	public void showFrame() {
+		this.frame.setVisible(true);
 	}
 
 	/**
@@ -118,7 +105,7 @@ public class AppLogin {
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				userName = textField.getText();
-				password = passwordField.getPassword().toString();
+				password = new String(passwordField.getPassword());
 				
 				if (userName == null || userName.isEmpty() || password == null || password.isEmpty()) {
 					JOptionPane.showMessageDialog(frame,
@@ -127,7 +114,18 @@ public class AppLogin {
 						    JOptionPane.WARNING_MESSAGE);
 				}
 				else {
-					//TODO: Pass stuff to verifier
+					Accounts acc = new Accounts();
+					if (acc.authenticate(userName, password)) {
+						frame.setVisible(false);
+						new MainInterface();
+						frame.dispose();
+					}
+					else {
+						JOptionPane.showMessageDialog(frame,
+							    "Username or Password incorrect",
+							    "Much warning very wow",
+							    JOptionPane.WARNING_MESSAGE);
+					}
 				}
 			}
 		});
