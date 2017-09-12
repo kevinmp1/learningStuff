@@ -136,6 +136,7 @@ public class AppLogin {
 		gbc_btnLogin.gridx = 3;
 		gbc_btnLogin.gridy = 6;
 		frame.getContentPane().add(btnLogin, gbc_btnLogin);
+		frame.getRootPane().setDefaultButton(btnLogin);
 		
 	}
 
