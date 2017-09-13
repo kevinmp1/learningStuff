@@ -1,8 +1,8 @@
 package passap.test;
 
-import java.security.*;
-import java.security.spec.InvalidKeySpecException;
-import javax.crypto.*;
+
+import java.security.Key;
+import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 import java.util.Base64;
 import java.util.Base64.Decoder;

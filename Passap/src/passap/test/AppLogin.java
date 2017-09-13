@@ -12,7 +12,6 @@ import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
 
 public class AppLogin {
@@ -117,8 +116,8 @@ public class AppLogin {
 					Accounts acc = new Accounts();
 					if (acc.authenticate(userName, password)) {
 						frame.setVisible(false);
-						new MainInterface();
 						frame.dispose();
+						new MainInterface();
 					}
 					else {
 						JOptionPane.showMessageDialog(frame,

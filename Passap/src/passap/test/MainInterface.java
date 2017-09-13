@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -41,6 +43,13 @@ public class MainInterface {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 700, 550);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.addWindowListener(new  WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent windowEvent) {
+				closeDBInterface();
+				System.exit(0);
+			}
+		});
 		
 		
 		JPanel panel = new JPanel();
@@ -105,7 +114,7 @@ public class MainInterface {
 		
 		frame.setVisible(true);
 	}
-	
+
 	private class ButtonActionListener implements ActionListener{
 		
 		String name;
@@ -118,6 +127,10 @@ public class MainInterface {
 		public void actionPerformed(ActionEvent arg0) {
 			showInfo(dbObject.getInfo(name));
 		}
+	}
+	
+	private void  closeDBInterface() {
+		dbObject.close();
 	}
 	
 	private void showInfo(String[] info) {

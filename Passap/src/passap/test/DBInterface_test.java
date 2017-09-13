@@ -1,29 +1,50 @@
 package passap.test;
 
-import static org.junit.Assert.*;
-
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 public class DBInterface_test {
-	DBInterface dbObject = new DBInterface();
-
+	private DBInterface dbObject;
+	
+	@Before
+	public void setup() {
+		dbObject = new DBInterface();
+	}
+	
+	
 	@Test
 	public void getNamesTest() {
-		String[] testString = {"Amazon","TeddyBear Junction", "Dell", "Taiga","Google","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1"
-				,"Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1"
-				,"Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1"
-				,"Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1"
-				,"Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1"
-				,"Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1"
-				,"Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1","Name1"};
-		assertArrayEquals("fails getNames", testString, dbObject.getNames());
+		assertNotNull("Failed to getNames",dbObject.getNames());
 	}
+	
 	
 	@Test
 	public void getInfoTest() {
-		String[] testString = {"Sonic", "INFO.temp", "PASS.temp"};
-		assertArrayEquals("fails getInfo", testString, dbObject.getInfo("Sonic"));
+		assertNotNull("getInfo failed", dbObject.getInfo("Test"));
+		assertNotNull("getInfo failed1", dbObject.getInfo("Kroger"));
+		assertNotNull("getInfo failed2", dbObject.getInfo("Swiffer"));
 	}
 
-
+	@Test
+	public void addEntryTest() {
+		assertEquals("Failed add entry",0,dbObject.addEntry("Google", "Testuser", "TestPass"));
+	}
+	
+	@Test
+	public void updateEntryTest() {
+		assertEquals("Failed to update", 0, dbObject.updateEntry("Google", "New", "New"));
+	}
+	
+	@Test
+	public void deleteEntryTest() {
+		assertEquals("Failed delete entry",0,dbObject.deleteEntry("Google"));
+	}
+	
+	@After
+	public void close() {
+		dbObject.close();
+	}
 }
