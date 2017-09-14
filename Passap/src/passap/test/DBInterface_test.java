@@ -23,8 +23,8 @@ public class DBInterface_test {
 	
 	@Test
 	public void getInfoTest() {
-		assertNotNull("getInfo failed", dbObject.getInfo("Test"));
-		assertNotNull("getInfo failed1", dbObject.getInfo("Kroger"));
+		assertNotNull("getInfo failed", dbObject.getInfo("Random"));
+		assertNotNull("getInfo failed1", dbObject.getInfo("DairyQueen"));
 		assertNotNull("getInfo failed2", dbObject.getInfo("Swiffer"));
 	}
 

@@ -105,7 +105,7 @@ public class DBInterface {
 		return 0; //ok
 	}
 	
-	public int updateEntry(String name, String usr, String pass) { //TODO: ensure that name passed in is not updated name but old name
+	public int updateEntry(String name, String usr, String pass) {
 		//scramble info
 		try {
 			String scrambledName = Scrambler.encrypt(name);

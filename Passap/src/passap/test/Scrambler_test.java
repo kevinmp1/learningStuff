@@ -16,7 +16,6 @@ public class Scrambler_test {
 	public void scrambleTest() {
 		try {
 			scrambledEggs = Scrambler.encrypt(pass);
-			System.out.println(scrambledEggs);
 			assertNotEquals("scramble failed to scramble","ThisIsAPassword1@;", scrambledEggs);
 		} catch (Exception e) {
 			fail("scramble failed to scramble");
