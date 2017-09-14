@@ -15,6 +15,7 @@ import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Arrays;
 import java.awt.event.ActionEvent;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -46,6 +47,7 @@ public class MainInterface {
 	 */
 	private void initialize() {
 		String[] names = dbObject.getNames();
+		Arrays.sort(names);
 		double numNames = names.length;
 		int rows = (int) Math.ceil(numNames/2.0);
 		int cols = 2;
